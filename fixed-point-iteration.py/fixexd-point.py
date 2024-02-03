@@ -19,7 +19,7 @@ def fixed_point_iteration(limit,tolerance, starting_point):
       current_point= next_point
   
   
-  return f"The number of iterations: {iteration} exceeded the limit. The current point is {next_point}"
+  return print(f"The number of iterations: {iteration} exceeded the limit. The current point is {next_point}")
 
 tol = (1*10**-8)
 fixed_point_iteration(4,tol,0)
