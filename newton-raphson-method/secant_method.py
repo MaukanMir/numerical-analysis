@@ -21,17 +21,17 @@ def secant_method(max_iterations, tolerance, initial_guess_1, initial_guess_2):
             raise ValueError("Division by zero encountered. No solution found.")
         
         # Compute the next approximation using the secant method formula
-        p_next = p1 - (q1 * (p1 - p0) / (q1 - q0))
+        p = p1 - (q1 * (p1 - p0) / (q1 - q0))
         
         # Update the guesses for the next iteration
-        p0, p1 = p1, p_next
+        p0, p1 = p1, p
         iteration_count += 1
         
         # Check for convergence
-        if abs(p_next - p0) < tolerance:
-            return p_next, iteration_count
+        if abs(p - p0) < tolerance:
+            return p, iteration_count
 
-    return p_next, iteration_count  # Return the last computed approximation
+    return p, iteration_count  # Return the last computed approximation
 
 # Example usage:
 tol = (1*10**-5)  # Tolerance is less strict for the sake of demonstration
