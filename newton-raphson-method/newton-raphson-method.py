@@ -1,5 +1,4 @@
 import sympy as sp
-import math
 # Define the symbol and function using sympy
 x = sp.symbols('x')
 func = x**2 -6
