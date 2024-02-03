@@ -1,42 +1,39 @@
 import sympy as sp
-import math
 
 # Define the symbol and function using sympy
 x = sp.symbols('x')
-func = x**2 -6
+func = x**2 - 6
 
 def calculate_function_value(function, value):
     # Evaluate the function at the specified value
     return function.subs(x, value).evalf()
 
-def secant_method( max_iterations, tolerance, initial_guess_1, initial_guess_2):
-    prev_guess = initial_guess_1
-    current_guess = initial_guess_2
+def secant_method(max_iterations, tolerance, initial_guess_1, initial_guess_2):
+    p0 = initial_guess_1
+    p1 = initial_guess_2
     iteration_count = 0
     
-    while iteration_count < max_iterations:
-        # Calculate function values at the previous and current guesses
-        function_value_prev = calculate_function_value(func, prev_guess)
-        function_value_current = calculate_function_value(func, current_guess)
+    for _ in range(max_iterations):
+        q0 = calculate_function_value(func, p0)
+        q1 = calculate_function_value(func, p1)
         
-        # Compute the difference in function values
-        function_value_difference = function_value_current - function_value_prev
-        # Prevent division by zero
-        if function_value_difference == 0:
-            return print("Division by zero encountered. No solution found.")
+        if q1 - q0 == 0:
+            raise ValueError("Division by zero encountered. No solution found.")
         
-        # Secant method formula to find the new guess
-        new_guess = current_guess - function_value_current * (current_guess - prev_guess) / function_value_difference
-
-        # Check for convergence
-        if abs(new_guess - current_guess) <= tolerance:
-            return print(f"The root is approximately {new_guess} after {iteration_count} iterations.")
+        # Compute the next approximation using the secant method formula
+        p_next = p1 - (q1 * (p1 - p0) / (q1 - q0))
+        
         # Update the guesses for the next iteration
-        prev_guess, current_guess = current_guess, new_guess
+        p0, p1 = p1, p_next
         iteration_count += 1
-    return print(f"Exceeded the maximum of {max_iterations} iterations. Last approximation is {current_guess}.")
+        
+        # Check for convergence
+        if abs(p_next - p0) < tolerance:
+            return p_next, iteration_count
 
+    return p_next, iteration_count  # Return the last computed approximation
 
 # Example usage:
-tol = (1*10**-8)
-secant_method(3,tol,3,2)
+tol = (1*10**-5)  # Tolerance is less strict for the sake of demonstration
+approximation, iterations = secant_method(3, tol, 3, 2)
+print(approximation, iterations)
