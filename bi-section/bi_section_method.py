@@ -22,7 +22,7 @@ def bi_section_method(a,b, tolerance, limit):
     if fp ==0 or (b-a)/ 2.0 < tolerance:
       print(f"The number of iterations: {iterations}")
       print(f"Current interval is [{a}, {b}]")
-      return "root is here : " + str(p)
+      return print("root is here : " + str(p))
 
     elif (fa <0 and fp>0 ) or (fa>0 and fp<0):
       b = p
