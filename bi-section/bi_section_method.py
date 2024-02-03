@@ -34,6 +34,6 @@ def bi_section_method(a,b, tolerance, limit):
     print(f"The number of iterations: {iterations}")
     print("---------------------------------------")
   
-  return f"Does not converge within estimated iterations of: {iterations}"
+  return print(f"Does not converge within estimated iterations of: {iterations}")
 
 bi_section_method(1,2, 10**-2, 20)
