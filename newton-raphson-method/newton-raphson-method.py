@@ -23,7 +23,7 @@ def newtons_raphson_method(limit, tolerance, starting_point):
         f_prime_value = derivative_function(func, current_point)
         
         if f_prime_value == 0:
-            return "Derivative was zero. No solution found."
+            return print("Derivative was zero. No solution found.")
         
         # Newton's method formula
         next_point = current_point - f_value / f_prime_value
