@@ -1,41 +1,38 @@
 import sympy as sp
-import math
 
 # Define the symbol and function using sympy
 x = sp.symbols('x')
-func = x**2 -6
+func = x**2 - 6
 
 def calculate_function_value(function, value):
     # Evaluate the function at the specified value
     return function.subs(x, value).evalf()
 
-def false_position_method( max_iterations, tolerance, initial_guess_1, initial_guess_2):
-    prev_guess = initial_guess_1
-    current_guess = initial_guess_2
-    iteration_count = 0
+def false_position_method(max_iterations, tolerance, initial_guess_1, initial_guess_2):
+    p0 = initial_guess_1
+    p1 = initial_guess_2
+    q0 = calculate_function_value(func, p0)
+    q1 = calculate_function_value(func, p1)
     
-    while iteration_count < max_iterations:
-        # Calculate function values at the previous and current guesses
-        function_value_prev = calculate_function_value(func, prev_guess)
-        function_value_current = calculate_function_value(func, current_guess)
-        
-        # Compute the difference in function values
-        function_value_difference = function_value_current - function_value_prev*(function_value_current- function_value_prev)/(function_value_current - function_value_prev)
-        # Prevent division by zero
-        if abs(function_value_difference - function_value_current) <= tolerance:
-            return print(f"The procedure was succesful. The point is:{function_value_difference}")
-        
-        check_negative = calculate_function_value(func, function_value_difference)
-        
-        if check_negative * function_value_current <0:
-          prev_guess, current_guess = function_value_current, function_value_prev
-        else:
-          current_guess = function_value_difference
-        
-        iteration_count += 1
-    return print(f"Exceeded the maximum of {max_iterations} iterations. Last approximation is {current_guess}.")
+    for iteration_count in range(1, max_iterations+1):
+        # Compute p using the false position formula
+        p = p1 - q1 * (p1 - p0) / (q1 - q0)
 
+        # Check for convergence
+        if abs(p - p1) < tolerance:
+            return f"The procedure was successful. The root is approximately {p} after {iteration_count} iterations."
+        
+        q = calculate_function_value(func, p)
+
+        # Check if the sign changes
+        if q * q1 < 0:
+            p0, q0 = p1, q1
+        
+        p1, q1 = p, q
+
+    return f"Method failed after {max_iterations} iterations."
 
 # Example usage:
-tol = (1*10**-8)
-false_position_method(3,tol,3,2)
+tol = 1e-8
+result = false_position_method(10, tol, 3, 2)
+print(result)
