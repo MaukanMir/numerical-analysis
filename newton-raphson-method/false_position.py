@@ -2,7 +2,7 @@ import sympy as sp
 
 # Define the symbol and function using sympy
 x = sp.symbols('x')
-func = x**2 - 6
+func = -x**3 - sp.cos(x)
 
 def calculate_function_value(function, value):
     # Evaluate the function at the specified value
@@ -23,16 +23,16 @@ def false_position_method(max_iterations, tolerance, initial_guess_1, initial_gu
             return f"The procedure was successful. The root is approximately {p} after {iteration_count} iterations."
         
         q = calculate_function_value(func, p)
-
+        print(p)
         # Check if the sign changes
         if q * q1 < 0:
             p0, q0 = p1, q1
         
         p1, q1 = p, q
 
-    return f"Method failed after {max_iterations} iterations."
+    return f"Method failed after {max_iterations} iterations. p: {p}"
 
 # Example usage:
 tol = 1e-8
-result = false_position_method(10, tol, 3, 2)
+result = false_position_method(2, tol, -1, 0)
 print(result)

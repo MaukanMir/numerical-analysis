@@ -2,7 +2,7 @@ import sympy as sp
 
 # Define the symbol and function using sympy
 x = sp.symbols('x')
-func = x**2 - 6
+func = -x**3 - sp.cos(x)
 
 def calculate_function_value(function, value):
     # Evaluate the function at the specified value
@@ -35,5 +35,5 @@ def secant_method(max_iterations, tolerance, initial_guess_1, initial_guess_2):
 
 # Example usage:
 tol = (1*10**-5)  # Tolerance is less strict for the sake of demonstration
-approximation, iterations = secant_method(3, tol, 3, 2)
+approximation, iterations = secant_method(2, tol, -1,0)
 print(approximation, iterations)
