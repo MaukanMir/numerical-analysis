@@ -37,7 +37,7 @@ def secant_method( max_iterations, tolerance, initial_guess_1, initial_guess_2):
         prev_guess, current_guess = current_guess, new_guess
         iteration_count += 1
 
-    return f"Exceeded the maximum of {max_iterations} iterations. Last approximation is {current_guess}."
+    return print(f"Exceeded the maximum of {max_iterations} iterations. Last approximation is {current_guess}.")
 
 
 # Example usage:
