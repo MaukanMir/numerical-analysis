@@ -1,8 +1,7 @@
 import sympy as sp
-import math
 # Define the symbol and function using sympy
 x = sp.symbols('x')
-func = -x**3 - 2*x**2 -5
+func = sp.E**x + 2**(x*-1) + 2*sp.cos(x) -6
 
 def calculate_function_value(func, point):
     # Evaluate the function at the specified point
@@ -37,5 +36,5 @@ def newtons_raphson_method(limit, tolerance, p0):
 
 # Example usage:
 
-tol = (1*10**-4)
-newtons_raphson_method(10,tol,2)
+tol = (1*10**-5)
+newtons_raphson_method(10,tol,1)
