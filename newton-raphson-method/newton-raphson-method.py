@@ -1,7 +1,8 @@
 import sympy as sp
+import math
 # Define the symbol and function using sympy
 x = sp.symbols('x')
-func = sp.E**x + 2**(x*-1) + 2*sp.cos(x) -6
+func = (x + sp.sqrt(x)) * (20 - x + sp.sqrt(20 - x)) - 145
 
 def calculate_function_value(func, point):
     # Evaluate the function at the specified point
@@ -24,9 +25,10 @@ def newtons_raphson_method(limit, tolerance, p0):
             return print("Derivative was zero. No solution found.")
         
         # Newton's method formula
-        p = p0 - f_value / f_prime_value
-
+        p = (p0 - f_value / f_prime_value)
+        print(f"P is : {p}, f-value: {f_value}, f_prime: {f_prime_value}")
         if abs(p - p0) <= tolerance:
+            iteration+=1
             return print(f"The number of iterations: {iteration}. The convergent point is: {p}")
         else:
             iteration += 1
@@ -36,5 +38,5 @@ def newtons_raphson_method(limit, tolerance, p0):
 
 # Example usage:
 
-tol = (1*10**-5)
-newtons_raphson_method(10,tol,1)
+tol = (1*10**-2)
+newtons_raphson_method(100,tol,10)
