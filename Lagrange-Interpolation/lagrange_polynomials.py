@@ -4,8 +4,8 @@ from sympy import symbols, prod
 x = symbols('x')
 
 # Data points
-x_values = [-0.50, -0.25, 0.25, 0.50]
-y_values = [1.53, 1.33, 0.57, 1.70]
+x_values = [1950,	1960,	1970,	1980,	1990,	2000, 2010, 2020]
+y_values = [151326,	179323,	203302,	226542,	249633,	281422, 308746, 331449]
 
 # Function to calculate Lagrange basis polynomials
 def lagrange_basis(x_values, i):
@@ -14,6 +14,10 @@ def lagrange_basis(x_values, i):
 # Calculate the Lagrange interpolating polynomial
 P_x = sum(y_values[i] * lagrange_basis(x_values, i) for i in range(len(x_values)))
 
-# Evaluate P(0)
-P_0 = P_x.subs(x, 0)
-P_x, P_0
+P_1940 = P_x.subs(x, 1940)
+P_1985 = P_x.subs(x, 1985)
+P_2030 = P_x.subs(x, 2030)
+
+print(f"Population in 1940: {P_1940}")
+print(f"Population in 1985: {P_1985}")
+print(f"Population in 2030: {P_2030}")
