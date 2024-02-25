@@ -13,7 +13,7 @@ def lagrange_basis(x_values, i):
 
 # Calculate the Lagrange interpolating polynomial
 P_x = sum(y_values[i] * lagrange_basis(x_values, i) for i in range(len(x_values)))
-
+print(P_x)
 P_1940 = P_x.subs(x, 1940)
 P_1985 = P_x.subs(x, 1985)
 P_2030 = P_x.subs(x, 2030)
