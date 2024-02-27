@@ -3,7 +3,10 @@ from sympy import symbols, diff, solve, Poly
 
 
 def calculate_maximum_average_weight(polynomial, x):
-  """_summary_
+  """
+  This function will take in a polynomial and an x value.
+  Solves for the root, calculate the derivative and then locate the critical points,
+  returning the maximum
   """
 
   # Compute the derivative of the polynomial
@@ -30,5 +33,5 @@ x = symbols('x')
 sample_1 = 6.67 - 42.6434*x + 16.1427*x**2 - 2.09464*x**3 + 0.126902*x**4 - 0.00367168*x**5 + 0.0000409458*x**6
 sample_2 = 6.67 - 5.67821*x + 2.91281*x**2 - 0.413799*x**3 + 0.0258413*x**4 - 0.000752546*x**5 + 0.00000836160*x**6
 
-print(calculate_maximum_average_weight(sample_1,x))
-print(calculate_maximum_average_weight(sample_2,x))
+print("The maximum weighta for sample 1: ", calculate_maximum_average_weight(sample_1,x))
+print("The maximum weighta for sample 2: ",calculate_maximum_average_weight(sample_2,x))
