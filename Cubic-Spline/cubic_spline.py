@@ -18,8 +18,9 @@ integral, error = quad(integrand, 0, 1)
 
 # The exact integral of sin(x) from 0 to 1
 exact_integral = 1 - np.cos(1)
-
+first_derivative_approx = spline(0.5, 1)  # 1st derivative
 print(integral, exact_integral, error)
+print("First Derivative (Approximation):", first_derivative_approx)
 
 
 # Update the function and given points
