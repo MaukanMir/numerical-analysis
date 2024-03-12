@@ -20,3 +20,28 @@ integral, error = quad(integrand, 0, 1)
 exact_integral = 1 - np.cos(1)
 
 print(integral, exact_integral, error)
+
+
+# Update the function and given points
+x_points = np.array([0, 0.25, 0.5, 0.75, 1.0])
+y_points = np.cos(np.pi * x_points)
+
+# Create a natural cubic spline
+spline = CubicSpline(x_points, y_points, bc_type='natural')
+
+# Integrate the spline over [0, 1]
+integral, _ = quad(lambda x: spline(x), 0, 1)
+
+# Approximate the first and second derivatives at x = 0.5
+first_derivative_approx = spline(0.5, 1)  # 1st derivative
+second_derivative_approx = spline(0.5, 2)  # 2nd derivative
+
+# Actual first and second derivatives of cos(pi*x) at x = 0.5
+first_derivative_actual = -np.pi * np.sin(np.pi * 0.5)
+second_derivative_actual = -np.pi**2 * np.cos(np.pi * 0.5)
+
+print("Integral:", integral)
+print("First Derivative (Approximation):", first_derivative_approx)
+print("First Derivative (Actual):", first_derivative_actual)
+print("Second Derivative (Approximation):", second_derivative_approx)
+print("Second Derivative (Actual):", second_derivative_actual)
